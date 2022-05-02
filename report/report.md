@@ -16,6 +16,9 @@
 - changed the folder names to user names using JupyterLab terminal, and created a pull request to resolve issue 1
 
 **Ana**  
+2/5/22
+- closed previously raised issue #1 and added comments on issue #9.
+
 
 **Lucas**  
 2/5/22
