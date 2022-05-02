@@ -11,15 +11,17 @@
 
 # Group Work
 
-**Emma**
+**Emma**  
 2/5/22
 - changed the folder names to user names using JupyterLab terminal, and created a pull request to resolve issue 1
 
-**Ana**
+**Ana**  
 
-**Lucas**
+**Lucas**  
+2/5/22
+- Opened an issue asking how we want to document our work in this file (issue #9)
 
-**Lachlan**
+**Lachlan**  
 
  # Emma's Work
  
