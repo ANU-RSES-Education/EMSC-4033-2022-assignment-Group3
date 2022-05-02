@@ -8,3 +8,25 @@
 - creating and resolving issues
 - adding tests
 - adding documentation/docstrings
+
+# Group Work
+
+**Emma**
+2/5/22
+- changed the folder names to user names using JupyterLab terminal, and created a pull request to resolve issue 1
+
+**Ana**
+
+**Lucas**
+
+**Lachlan**
+
+ # Emma's Work
+ 
+ 
+ # Ana's Work
+ 
+ # Lucas's Work
+ 
+ # Lachlan's Work
+ 
