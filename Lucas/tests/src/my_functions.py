@@ -12,73 +12,89 @@ from .dependencies import *
 def my_documentation():
 
     markdown_documentation = """   
-# Haec progressio est tabula faciens
+# Earthquake Depth and Magnitude Map Maker
+
+This notebook allows you to plot earthquakes which occurred between 1975 and 2022 on a map of a selected region.
     
-## Moderni progressio programmandi 
+## Parameters
 
-Moderni programmandi rationem habet organicam, accumsan sentientem, ut mirum inveniat. In hoc cursu discimus quomodo per laminis perlegere discamus quomodo programmata aedificent et quomodo nostra edificent. Incipiamus cum aliquibus praecipuis quaestionibus. 
+To create a map of a region, you must first select parameters for mapping. These are as follows, and can be updated below;
 
-## Quid computatorium ? 
-
-Computatorium classicum est machina alicuius generis ad informationes puras expediendas. Varia elementa opus sunt ad hoc possibilis efficiendum, inter quas aliqua instrumenta initialisendi et recondendi informationes ante et post discursum est, et ma- china ad informationes expediendas (including casus ubi processus pendet ab ipsa informatione). Multae variae machinis his criteriis occurrere possunt, sed plerumque unam saltem exigentiam adiungimus:
-
-## Aequationes mathematicae 
-
-Per "Navier-Stokes" datae sunt
-
-$$
-    \\frac{D \\mathbf{u}}{Dt} -\\nabla \cdot \\eta \\left( \\nabla \mathbf{u} + \\nabla \mathbf{u}^T \\right) - \\nabla p = \cdots
-$$
+-min_latitude  
+-max_latitude  
+-min_longitude  
+-max_longitude  
+-minimum_magnitude  
+-water_features_resolution  
+-coastline_resolution  
 
 
-## `Python` documentum
+## `Python` documentation
 
 Python hic est aliquis codicem quem animum advertere volumus
 
 ```python
-
 # The classic "hello world" program
 print("salve mundi !")
-
 ```
-
 """
     
     return markdown_documentation
 
 
-
-def my_coastlines(resolution):
-    """ returns the relevant coastlines at the requested resolution """
+def valid_resolution(resolution):
+    """Checks if an input resolution is valid.
+    Valid resolutions are '10m','50m', & '110m'. 
+    Any other input will be set to "50m" and a warning will be issued."""
     
-    import cartopy.feature as cfeature
+    valid_resolutions = ['10m','50m','110m']
     
-
-    return cfeature.NaturalEarthFeature('physical', 'coastline', resolution,
-                           edgecolor=(0.0,0.0,0.0),
-                           facecolor="none")
-
-
-def my_water_features(resolution, lakes=True, rivers=True, ocean=False):
-    """Returns a [list] of cartopy features - the ones you ask for"""
+    if resolution in valid_resolutions:
+        return(resolution)
     
-    features = []
+    else:
+        #if resolution is invalid, we return "50m" and issue a warning
+        warnings.warn("""Invalid resolution. Valid resolutions are "10m","50m", & "110m". Resolution has been set to "50m". """)
+        return('50m')
+
+
+
+def my_coastlines(resolution = "50m"):
+    """ Returns the relevant coastlines at the requested resolution.
+    Valid resolutions are "10m","50m", & "110m". Any other input will be set to "50m"."""
     
-    if rivers:
-        features.append(cfeature.NaturalEarthFeature('physical', 'rivers_lake_centerlines', resolution,
-                                        edgecolor='Blue', facecolor="none"))
+    #check if resolution is valid and return "50m" if invalid.
+    res = valid_resolution(resolution)
+
+    return cfeature.NaturalEarthFeature('physical', 'coastline', res,
+                                        edgecolor=(0.0,0.0,0.0),
+                                        facecolor="none")
+
+def my_earth_features(resolution = "50m", features = ['lakes','rivers_lake_centerlines']):
+    """Returns a [list] of cartopy natural earth physical features at the given resolution. 
+    Valid resolutions are "10m","50m", & "110m". Any other input will be set to "50m".
+    Valid physical features are from https://www.naturalearthdata.com/features/"""
+    
+    
+    #these are the valid natural earth physical features
+    valid_features = ['coastline','land', 'ocean',    
+                      'minor_islands','reefs','physical_region_features',
+                      'rivers_lake_centerlines','lakes','glaciated_areas','antarctic_ice_shelves',
+                      'bathymetry','geographic_lines','graticules']
+                      
+                      
+    #check if resolution is valid and return "50m" if invalid.
+    res = valid_resolution(resolution)
         
-    if lakes:
-        features.append(cfeature.NaturalEarthFeature('physical', 'lakes', resolution,
-                                        edgecolor="blue", facecolor="blue"))
-
-    if ocean:
-        features.append(cfeature.NaturalEarthFeature('physical', 'ocean', resolutio,
-                           edgecolor="green",
-                           facecolor="blue"))
+    cartopy_features = []
     
+    for feature in features:
+        if feature in valid_features:
+            cartopy_features.append(cfeature.NaturalEarthFeature('physical', feature, res,
+                                        edgecolor=(0.0,0.0,0.0),
+                                        facecolor="none"))
     
-    return features
+    return cartopy_features
 
 def my_basemaps():
     """Returns a dictionary of map tile generators that cartopy can use"""
@@ -90,50 +106,20 @@ def my_basemaps():
     
     mapper = {}
     
-    ## Continental US terrain images
-    mapper["stamen_terrain"] = cimgt.Stamen('terrain-background')
-    mapper["stamen_terrain_plus"] = cimgt.Stamen('terrain')
-    mapper["stamen_artist"] = cimgt.Stamen('watercolor')
-
-    ## Mapquest satellite / streetmap images 
-    mapper["map_quest_aerial"] = cimgt.MapQuestOpenAerial()
-    mapper["map_quest_street"] = cimgt.MapQuestOSM()
-
     ## Open Street map
     mapper["open_street_map"] = cimgt.OSM()
 
-    ## Satellite Quadtree
-    mapper["qtree_satellite_plus"]  = cimgt.QuadtreeTiles()
-
-
-    ## Ordinance Survey (not set up)
-    # ord_survey = cimgt.OrdnanceSurvey(apikey="")
-
-    ## Azure (Not released in cartopy)
-    # azure = None
-
-    ## Mapbox Satellite images 
-    
-    mapper["mapbox_streets"] = cimgt.MapboxTiles(map_id='streets-v11', 
-                                     access_token='pk.eyJ1IjoibG91aXNtb3Jlc2kiLCJhIjoiY2pzeG1mZzFqMG5sZDQ0czF5YzY1NmZ4cSJ9.lpsUzmLasydBlS0IOqe5JA')
-
-    mapper["mapbox_outdoors"] = cimgt.MapboxTiles(map_id='outdoors-v11', 
-                                         access_token='pk.eyJ1IjoibG91aXNtb3Jlc2kiLCJhIjoiY2pzeG1mZzFqMG5sZDQ0czF5YzY1NmZ4cSJ9.lpsUzmLasydBlS0IOqe5JA')
-
-    mapper["mapbox_satellite"] = cimgt.MapboxTiles(map_id='satellite-v9', 
-                                         access_token='pk.eyJ1IjoibG91aXNtb3Jlc2kiLCJhIjoiY2pzeG1mZzFqMG5sZDQ0czF5YzY1NmZ4cSJ9.lpsUzmLasydBlS0IOqe5JA')
-
-    ## Google maps image tiles ()
-    mapper["google_maps_street"] = cimgt.GoogleTiles(style="street") 
-    mapper["google_maps_satellite"] = cimgt.GoogleTiles(style="satellite") 
-    mapper["google_maps_terrain"] = cimgt.GoogleTiles(style="terrain") 
-
     return mapper
-    
-    
+
+
 ## specify some point data (e.g. global seismicity in this case)
 
-def download_point_data(region):
+def download_point_data(region, min_magnitude):
+    """
+    Returns earthquake location, magnitude and date from earthquakes in the given region between 1975 and 2022.
+    Region is of the form [min longitude, max longitude, min latitude, max latitude].
+    Earthquaked below min_magnitude are not returned.
+    """
     
     from obspy.core import event
     from obspy.clients.fdsn import Client
@@ -141,48 +127,48 @@ def download_point_data(region):
 
     client = Client("IRIS")
 
-    extent = region
-
     starttime = UTCDateTime("1975-01-01")
     endtime   = UTCDateTime("2022-01-01")
-    cat = client.get_events(starttime=starttime, endtime=endtime,
-                        minlongitude=extent[0],
-                        maxlongitude=extent[1],
-                        minlatitude=extent[2],
-                        maxlatitude=extent[3],
-                        minmagnitude=4.1, catalog="ISC")
+    
+    cat = client.get_events(starttime, endtime,
+                            minlongitude = region[0], maxlongitude = region[1],
+                            minlatitude  = region[2], maxlatitude  = region[3],
+                            catalog = "ISC", minmagnitude = min_magnitude)
 
     print ("Point data: {} events in catalogue".format(cat.count()))
-    
-    
-    # Unpack the obspy data into a plottable array
 
+    # Initialise an array of zeros of the same size as the data we want to return
     event_count = cat.count()
-
     eq_origins = np.zeros((event_count, 4))
 
-    for ev, event in enumerate(cat.events):
-        eq_origins[ev,0] = dict(event.origins[0])['longitude']
-        eq_origins[ev,1] = dict(event.origins[0])['latitude']
-        eq_origins[ev,2] = dict(event.origins[0])['depth'] 
-        eq_origins[ev,3] = dict(event.magnitudes[0])['mag'] 
+    # Unpack the obspy data into a plottable array
+    # We want lat, long, magnitude and depth.
+    for event, earthquake in enumerate(cat.events):
         
-    # scale 
-    eq_origins[ev,3] = 50.0*(eq_origins[ev,3] - 4.0)
+        eq_origins[event,0] = dict(earthquake.origins[0])['longitude']
+        eq_origins[event,1] = dict(earthquake.origins[0])['latitude']
+        eq_origins[event,2] = dict(earthquake.magnitudes[0])['mag']
+        eq_origins[event,3] = dict(earthquake.origins[0])['depth']
 
+        
+        #eq_origins[event,3] = (dict(earthquake.origins[0])['time']).date.year
 
     return eq_origins
 
 
-def my_point_data(region):
-    
-    data = download_point_data(region)
+def my_point_data(region, min_magnitude = 5.5):
+    """
+    Returns earthquake location, magnitude and date from earthquakes in the given region between 1975 and 2022.
+    Region is of the form [min longitude, max longitude, min latitude, max latitude].
+    Earthquakes with magnitude below min_magnitude are not returned.
+    """
+        
+    data = download_point_data(region, min_magnitude)
     
     return data
 
 
 ## - Some global raster data (lon, lat, data) global plate age, in this example
-
 
 def download_raster_data():
     
@@ -200,27 +186,15 @@ def download_raster_data():
     from cloudstor import cloudstor
     teaching_data = cloudstor(url="L93TxcmtLQzcfbk", password='')
     teaching_data.download_file_if_distinct("global_age_data.3.6.z.npz", "global_age_data.3.6.z.npz")
-    
+
     datasize = (1801, 3601, 3)
-    age_data = np.empty(datasize)
+    raster_data = np.empty(datasize)
 
-    ages = np.load("global_age_data.3.6.z.npz")["ageData"]
-
-    lats = np.linspace(90, -90, datasize[0])
-    lons = np.linspace(-180.0,180.0, datasize[1])
-
-    arrlons,arrlats = np.meshgrid(lons, lats)
-    
-    age_data[...,0] = arrlons[...]
-    age_data[...,1] = arrlats[...]
-    age_data[...,2] = ages[...]
-     
-    return age_data
+    return raster_data
 
 
 def my_global_raster_data():
-    
-    
+
     raster = download_raster_data()
     
     return raster
