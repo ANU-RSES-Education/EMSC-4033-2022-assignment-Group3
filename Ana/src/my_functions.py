@@ -12,41 +12,8 @@ from .dependencies import *
 def my_documentation():
 
     markdown_documentation = """   
-# Haec progressio est tabula faciens
-    
-## Moderni progressio programmandi 
 
-Moderni programmandi rationem habet organicam, accumsan sentientem, ut mirum inveniat. 
-In hoc cursu discimus quomodo per laminis perlegere discamus quomodo programmata aedificent et 
-quomodo nostra edificent. Incipiamus cum aliquibus praecipuis quaestionibus. 
-
-## Quid computatorium ? 
-
-Computatorium classicum est machina alicuius generis ad informationes 
-puras expediendas. Varia elementa opus sunt ad hoc possibilis efficiendum, 
-inter quas aliqua instrumenta initialisendi et recondendi informationes ante 
-et post discursum est, et ma- china ad informationes expediendas (including casus 
-ubi processus pendet ab ipsa informatione). Multae variae machinis his criteriis 
-occurrere possunt, sed plerumque unam saltem exigentiam adiungimus:
-
-## Aequationes mathematicae 
-
-Per "Navier-Stokes" datae sunt
-
-$$
-    \\frac{D \\mathbf{u}}{Dt} -\\nabla \cdot \\eta \\left( \\nabla \mathbf{u} + 
-    \\nabla \mathbf{u}^T \\right) - \\nabla p = \cdots
-$$
-
-
-## `Python` documentum
-
-Python hic est aliquis codicem quem animum advertere volumus
-
-```python
-# The classic "hello world" program
-print("salve mundi !")
-```
+hello
 """
     
     return markdown_documentation
@@ -58,26 +25,33 @@ def my_coastlines(resolution):
 
     import cartopy.feature as cfeature
 
-    return cfeature.NaturalEarthFeature('physcical', 'coastline', res,
+    return cfeature.NaturalEarthFeature('physical', 'coastline', resolution,
                                         edgecolor=(0.0,0.0,0.0),
                                         facecolor="none")
 
 
-def my_water_features(resolution, lakes=True, rivers=True, ocean=False):
+# fixed typo (physical) and changed res to resolution 
+
+
+def my_water_features(resolution, lakes=True, rivers=True, ocean=True):
     """Returns a [list] of cartopy features"""
     
     features = []
     
     if rivers:
-        features.append(something)
+        features.append('rivers')
         
     if lakes:
-        features.append(somethingelse)
+        features.append('lakes')
 
     if ocean:
-        features.append(somethingelse)
+        features.append('ocean')
     
     return features
+
+
+# append means add to the end of the list, so added .append to features. Also changed ocean=False to ocean=True
+
 
 def my_basemaps():
     """Returns a dictionary of map tile generators that cartopy can use"""
@@ -95,23 +69,53 @@ def my_basemaps():
     return mapper
 
 
-## specify some point data (e.g. global seismicity in this case)
+# # specify some point data (e.g. global seismicity in this case)
 
 def download_point_data(region):
+    #looked up ?get_events and got the list i need to add, added that to the doc
     
     from obspy.core import event
     from obspy.clients.fdsn import Client
     from obspy import UTCDateTime
 
     client = Client("IRIS")
-
+    
     extent = region
 
     starttime = UTCDateTime("1975-01-01")
     endtime   = UTCDateTime("2022-01-01")
     
-    cat = client.get_events...
-
+    cat = client.get_events(
+    starttime=None,
+    endtime=None,
+    minlatitude=None,
+    maxlatitude=None,
+    minlongitude=None,
+    maxlongitude=None,
+    latitude=None,
+    longitude=None,
+    minradius=None,
+    maxradius=None,
+    mindepth=None,
+    maxdepth=None,
+    minmagnitude=None,
+    maxmagnitude=None,
+    magnitudetype=None,
+    eventtype=None,
+    includeallorigins=None,
+    includeallmagnitudes=None,
+    includearrivals=None,
+    eventid=None,
+    limit=None,
+    offset=None,
+    orderby=None,
+    catalog=None,
+    contributor=None,
+    updatedafter=None,
+    filename=None,
+    **kwargs,
+)
+    
     print ("Point data: {} events in catalogue".format(cat.count()))
     
     # Unpack the obspy data into a plottable array
@@ -132,7 +136,7 @@ def my_point_data(region):
     return data
 
 
-## - Some global raster data (lon, lat, data) global plate age, in this example
+# # - Some global raster data (lon, lat, data) global plate age, in this example
 
 def download_raster_data():
     
@@ -162,3 +166,9 @@ def my_global_raster_data():
     raster = download_raster_data()
     
     return raster
+
+
+
+
+
+
