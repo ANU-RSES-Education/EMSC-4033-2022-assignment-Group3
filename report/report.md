@@ -19,6 +19,10 @@
 2/5/22
 - closed previously raised issue #1 and added comments on issue #9.
 
+9/05/2022
+- I pulled Lucas's files to anastasia_branch test his functions.
+- I pushed my my_functions to the main branch.
+
 
 **Lucas**  
 2/5/22
