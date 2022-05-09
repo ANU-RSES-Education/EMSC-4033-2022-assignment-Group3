@@ -15,6 +15,9 @@
 2/5/22
 - changed the folder names to user names using JupyterLab terminal, and created a pull request to resolve issue 1
 
+9/5/22
+- approved pull requests from Lucas and Ana. Helped eachother with the terminal in Jupyter to push and pull from GitHub and troubleshoot some errors occuring in the terminal.
+
 **Ana**  
 2/5/22
 - closed previously raised issue #1 and added comments on issue #9.
