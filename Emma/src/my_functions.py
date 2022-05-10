@@ -54,14 +54,29 @@ print("salve mundi !")
 
 
 def my_coastlines(resolution):
-    """ returns the relevant coastlines at the requested resolution """
-
+    """ returns the relevant coastlines at the requested resolution
+        resolution should be one of '10m', '50m', or '110m' """
     import cartopy.feature as cfeature
 
-    return cfeature.NaturalEarthFeature('physcical', 'coastline', res,
+    return cfeature.NaturalEarthFeature('physical', 'coastline', '50m',
                                         edgecolor=(0.0,0.0,0.0),
                                         facecolor="none")
 
+# coastline = cfeature.NaturalEarthFeature('physical', 'coastline', '50m',
+#                            edgecolor=(0.0,0.0,0.0),
+#                            facecolor="none")
+
+# rivers = cfeature.NaturalEarthFeature('physical', 'rivers_lake_centerlines', '50m',
+#                                         edgecolor='Blue', facecolor="none")
+
+# lakes = cfeature.NaturalEarthFeature('physical', 'lakes', '50m',
+#                                         edgecolor="blue", facecolor="blue")
+
+# ocean = cfeature.NaturalEarthFeature('physical', 'ocean', '50m',
+#                            edgecolor="green",
+#                            facecolor="blue")
+
+    #fixed typo 'physical' and added resolution of 50m to c.feature.NaturalEarthFeature set
 
 def my_water_features(resolution, lakes=True, rivers=True, ocean=False):
     """Returns a [list] of cartopy features"""
@@ -69,15 +84,18 @@ def my_water_features(resolution, lakes=True, rivers=True, ocean=False):
     features = []
     
     if rivers:
-        features.append(something)
+        features.append('rivers')
         
     if lakes:
-        features.append(somethingelse)
+        features.append('lakes')
 
     if ocean:
-        features.append(somethingelse)
+        features.append('ocean')
     
     return features
+
+    # append adds to the end of the list, defined the features in water_features
+    #ocean=False to remove the oceans from being read/displayed in the maps
 
 def my_basemaps():
     """Returns a dictionary of map tile generators that cartopy can use"""
@@ -95,7 +113,7 @@ def my_basemaps():
     return mapper
 
 
-## specify some point data (e.g. global seismicity in this case)
+# # specify some point data (e.g. global seismicity in this case)
 
 def download_point_data(region):
     
@@ -107,11 +125,15 @@ def download_point_data(region):
 
     extent = region
 
+    #region is defined in MapMaker as the map_extent?
+
     starttime = UTCDateTime("1975-01-01")
     endtime   = UTCDateTime("2022-01-01")
     
-    cat = client.get_events...
+    cat = client.get_events(starttime=starttime, endtime=endtime, minlatitude=None, maxlatitude=None,         minlongitude=None, maxlongitude=None, latitude=None, longitude=None, minradius=None, maxradius=None, mindepth=None, maxdepth=None, minmagnitude=None, maxmagnitude=None, magnitudetype=None, eventtype=None, includeallorigins=None, includeallmagnitudes=None, includearrivals=None, eventid=None, limit=None, offset=None, orderby=None, catalog=None, contributor=None, updatedafter=None, filename=None, **kwargs)
 
+    #make the variables in the catalog objects/null values and defining the starttime and endtime as marked above. **kwargs allows us to pass keyword arguements into the function
+    
     print ("Point data: {} events in catalogue".format(cat.count()))
     
     # Unpack the obspy data into a plottable array
@@ -132,7 +154,7 @@ def my_point_data(region):
     return data
 
 
-## - Some global raster data (lon, lat, data) global plate age, in this example
+# # - Some global raster data (lon, lat, data) global plate age, in this example
 
 def download_raster_data():
     
