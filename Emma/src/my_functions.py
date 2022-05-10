@@ -58,11 +58,25 @@ def my_coastlines(resolution):
         resolution should be one of '10m', '50m', or '110m' """
     import cartopy.feature as cfeature
 
-    return cfeature.NaturalEarthFeature('physical', 'coastline', resolution,
+    return cfeature.NaturalEarthFeature('physical', 'coastline', '50m',
                                         edgecolor=(0.0,0.0,0.0),
                                         facecolor="none")
 
-    #fixed typo 'physical' and added resolution to c.feature.NaturalEarthFeature set
+# coastline = cfeature.NaturalEarthFeature('physical', 'coastline', '50m',
+#                            edgecolor=(0.0,0.0,0.0),
+#                            facecolor="none")
+
+# rivers = cfeature.NaturalEarthFeature('physical', 'rivers_lake_centerlines', '50m',
+#                                         edgecolor='Blue', facecolor="none")
+
+# lakes = cfeature.NaturalEarthFeature('physical', 'lakes', '50m',
+#                                         edgecolor="blue", facecolor="blue")
+
+# ocean = cfeature.NaturalEarthFeature('physical', 'ocean', '50m',
+#                            edgecolor="green",
+#                            facecolor="blue")
+
+    #fixed typo 'physical' and added resolution of 50m to c.feature.NaturalEarthFeature set
 
 def my_water_features(resolution, lakes=True, rivers=True, ocean=False):
     """Returns a [list] of cartopy features"""
@@ -81,6 +95,7 @@ def my_water_features(resolution, lakes=True, rivers=True, ocean=False):
     return features
 
     # append adds to the end of the list, defined the features in water_features
+    #ocean=False to remove the oceans from being read/displayed in the maps
 
 def my_basemaps():
     """Returns a dictionary of map tile generators that cartopy can use"""
