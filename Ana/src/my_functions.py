@@ -30,7 +30,8 @@ def my_coastlines(resolution):
                                         facecolor="none")
 
 
-# fixed typo (physical) and changed res to resolution 
+# fixed typo (physical) and changed res to resolution
+# do a test for valid resolution 
 
 
 def my_water_features(resolution, lakes=True, rivers=True, ocean=True):
@@ -71,7 +72,7 @@ def my_basemaps():
 
 # # specify some point data (e.g. global seismicity in this case)
 
-def download_point_data(region):
+def download_point_data(region, MinMagnitude):
     #looked up ?get_events and got the list i need to add, added that to the doc
     
     from obspy.core import event
@@ -85,37 +86,24 @@ def download_point_data(region):
     starttime = UTCDateTime("1975-01-01")
     endtime   = UTCDateTime("2022-01-01")
     
-    cat = client.get_events(
-    starttime=None,
-    endtime=None,
-    minlatitude=None,
-    maxlatitude=None,
-    minlongitude=None,
-    maxlongitude=None,
-    latitude=None,
-    longitude=None,
-    minradius=None,
-    maxradius=None,
-    mindepth=None,
-    maxdepth=None,
-    minmagnitude=None,
-    maxmagnitude=None,
-    magnitudetype=None,
-    eventtype=None,
-    includeallorigins=None,
-    includeallmagnitudes=None,
-    includearrivals=None,
-    eventid=None,
-    limit=None,
-    offset=None,
-    orderby=None,
-    catalog=None,
-    contributor=None,
-    updatedafter=None,
-    filename=None,
-    **kwargs,
-)
+    # cat = client.get_events(starttime=None,endtime=None,minlatitude=None,maxlatitude=None,minlongitude=None,maxlongitude=None,latitude=None,longitude=None,minradius=None,maxradius=None,mindepth=None,maxdepth=None,minmagnitude=None,maxmagnitude=None,magnitudetype=None,eventtype=None,includeallorigins=None,includeallmagnitudes=None,includearrivals=None,eventid=None,limit=None,offset=None,orderby=None,catalog=None,contributor=None,updatedafter=None,filename=None,**kwargs,)
     
+    cat = client.get_events(starttime=starttime, endtime=endtime,
+                        # minlongitude=region[0],
+                        # maxlongitude=region[1],
+                        # minlatitude=region[2],
+                        # maxlatitude=region[3],
+                        # minmagnitude=minmagnitude, catalog="ISC")
+                        minlongitude=lon0,
+                        maxlongitude=lon1,
+                        minlatitude=lat0,
+                        maxlatitude=lat1,
+                        minmagnitude=MinMagnitude, catalog="ISC")
+
+#     lat0 =  30  ; lat1 = 40
+# lon0 =  -123; lon1 = -113
+
+
     print ("Point data: {} events in catalogue".format(cat.count()))
     
     # Unpack the obspy data into a plottable array
@@ -123,15 +111,22 @@ def download_point_data(region):
     event_count = cat.count()
 
     eq_origins = np.zeros((event_count, 4))
+    
+ # I have copied the code from himalaya 
 
-    some_code
+    for ev, event in enumerate(cat.events):
+        eq_origins[ev,0] = dict(event.origins[0])['longitude']
+        eq_origins[ev,1] = dict(event.origins[0])['latitude']
+        eq_origins[ev,2] = dict(event.origins[0])['depth']
+        eq_origins[ev,3] = dict(event.magnitudes[0])['mag']
+        eq_origins[ev,4] = (dict(event.origins[0])['time']).date.year
 
     return eq_origins
 
 
-def my_point_data(region):
+def my_point_data(region, MinMagnitude):
     
-    data = download_point_data(region)
+    data = download_point_data(region, MinMagnitude)
     
     return data
 
