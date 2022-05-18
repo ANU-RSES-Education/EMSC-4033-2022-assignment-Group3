@@ -23,9 +23,24 @@
 - closed previously raised issue #1 and added comments on issue #9.
 
 9/05/2022
-- I pulled Lucas's files to anastasia_branch test his functions.
+- I pulled Lucas's files to anastasia_branch to test his functions.
 - I pushed my my_functions to the main branch.
 
+11/05/2022
+- finished writing my my_functions code and tested if my map_maker works
+
+16/05/2022
+
+17/05/2022
+- I approved Lachlan's pull requests, allwoing him to upload his code onto the main branch.
+
+
+18/05/2022
+- I approved Lucas's pull requests, allwoing him to upload his code onto the main branch.
+- Collaborated to edit the main report.
+- I added documentation to my my_functions (I will do this today)
+- Added some tests 
+- 
 
 **Lucas**  
 2/5/22
