@@ -13,6 +13,7 @@ from IPython.display import display_markdown
 from matplotlib import cm
 
 import cloudstor
+from scipy.io import netcdf
 
 # from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 # import matplotlib.ticker as mticker
