@@ -29,16 +29,41 @@
 
 **Lucas**  
 2/5/22
-- Opened an issue asking how we want to document our work in this file (issue #9)
+- Opened an issue asking how we want to document our work in this file (issue #9).  
+16/5/22  
+- Finished and uploaded my code
 
 **Lachlan**  
 
  # Emma's Work
  
+ **Lucas**
+ 18/5/22  
+ -I ran tests offline on this code, all 6 tests were passed  
  
  # Ana's Work
  
+  **Lucas**
+ 18/5/22  
+ -I ran tests offline on this code, all 6 tests were passed  
+ 
  # Lucas's Work
+ 16/5/22  
+ - Finished all functions and map_maker runs and makes a map  
+ - Added doc strings to all functions  
+ - Made a pull request to upload all of my work
+ - Helped lachlan fix an issue regarding a misspelling of "physical" in his code  
+
+18/5/22
+- Created test functions to test a number of things
+- Made a pull request to upload my tests
+- Ran tests on other people's code offline, all tests were passed in all cases
+
+ 
  
  # Lachlan's Work
  
+ 
+  **Lucas**
+ 18/5/22  
+ -I ran tests offline on this code, all 6 tests were passed  
