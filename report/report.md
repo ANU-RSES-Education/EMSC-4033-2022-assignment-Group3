@@ -18,6 +18,12 @@
 9/5/22
 - approved pull requests from Lucas and Ana. Helped eachother with the terminal in Jupyter to push and pull from GitHub and troubleshoot some errors occuring in the terminal.
 
+16/5/22
+- raised some issues and approved pull requests. 
+
+18/5/22
+- approved pull requests and made pull request reviews.
+
 **Ana**  
 2/5/22
 - closed previously raised issue #1 and added comments on issue #9.
@@ -36,6 +42,12 @@
 **Lachlan**  
 
  # Emma's Work
+ 16/5/22
+ - made sure my map_maker works and the map is accurate. 
+
+ 18/5/22
+ - finalised map_maker, made the code neat and added doc strings.
+ - finished test_functions tests for the my_functions functions.
  
  **Lucas**
  18/5/22  
