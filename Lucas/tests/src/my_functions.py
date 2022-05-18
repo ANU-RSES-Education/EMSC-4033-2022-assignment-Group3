@@ -54,7 +54,8 @@ def valid_resolution(resolution):
     
     else:
         #if resolution is invalid, we return "50m" and issue a warning
-        warnings.warn("""Invalid resolution. Valid resolutions are "10m","50m", & "110m". Resolution has been set to "50m". """)
+        warnings.warn("""Invalid resolution. Valid resolutions are "10m","50m", & "110m". 
+        Resolution has been set to "50m". """, UserWarning)
         return('50m')
 
 
@@ -97,7 +98,7 @@ def my_earth_features(resolution = "50m", features = ['lakes','rivers_lake_cente
     return cartopy_features
 
 def my_basemaps():
-    """Returns a dictionary of map tile generators that cartopy can use"""
+    """Returns a dictionary of map tile generators that cartopy can use."""
     
     ## The full list of available interfaces is found in the source code for this one:
     ## https://github.com/SciTools/cartopy/blob/master/lib/cartopy/io/img_tiles.py
@@ -116,7 +117,7 @@ def my_basemaps():
 
 def download_point_data(region, min_magnitude):
     """
-    Returns earthquake location, magnitude and date from earthquakes in the given region between 1975 and 2022.
+    Returns array of earthquake location (lat/long), magnitude and date from earthquakes in the given region between 1975 and 2022.
     Region is of the form [min longitude, max longitude, min latitude, max latitude].
     Earthquaked below min_magnitude are not returned.
     """
@@ -151,18 +152,18 @@ def download_point_data(region, min_magnitude):
         eq_origins[event,3] = dict(earthquake.origins[0])['depth']
 
         
-        #eq_origins[event,3] = (dict(earthquake.origins[0])['time']).date.year
+        #eq_origins[event,4] = (dict(earthquake.origins[0])['time']).date.year #dont really need time
 
     return eq_origins
 
 
 def my_point_data(region, min_magnitude = 5.5):
     """
-    Returns earthquake location, magnitude and date from earthquakes in the given region between 1975 and 2022.
+    Returns an array of earthquake location (lat/long), magnitude and date from earthquakes in the given region between 1975 and 2022.
     Region is of the form [min longitude, max longitude, min latitude, max latitude].
     Earthquakes with magnitude below min_magnitude are not returned.
     """
-        
+    
     data = download_point_data(region, min_magnitude)
     
     return data
@@ -171,6 +172,7 @@ def my_point_data(region, min_magnitude = 5.5):
 ## - Some global raster data (lon, lat, data) global plate age, in this example
 
 def download_raster_data():
+    """Gets raster seafloor age data from cloudstore. Returns an array with lats, longs and ages for each point."""
     
     # Seafloor age data and global image - data from Earthbyters
 
@@ -187,14 +189,28 @@ def download_raster_data():
     teaching_data = cloudstor(url="L93TxcmtLQzcfbk", password='')
     teaching_data.download_file_if_distinct("global_age_data.3.6.z.npz", "global_age_data.3.6.z.npz")
 
+    ages = np.load("global_age_data.3.6.z.npz")["ageData"]    
+    
     datasize = (1801, 3601, 3)
-    raster_data = np.empty(datasize)
+    age_data = np.empty(datasize)
+    
+    lats = np.linspace(90, -90, datasize[0])
+    lons = np.linspace(-180.0,180.0, datasize[1])
 
-    return raster_data
+    arrlons,arrlats = np.meshgrid(lons, lats)
+
+    age_data[...,0] = arrlons[...]
+    age_data[...,1] = arrlats[...]
+    age_data[...,2] = ages[...]
+    
+
+    return age_data
 
 
 def my_global_raster_data():
-
+    """Gets raster seafloor age data from cloudstore. Returns an array with lats, longs and ages for each point."""
+        
     raster = download_raster_data()
+    
     
     return raster
