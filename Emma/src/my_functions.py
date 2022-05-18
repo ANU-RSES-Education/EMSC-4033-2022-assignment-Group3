@@ -64,19 +64,6 @@ def my_coastlines(resolution):
                                         edgecolor=(0.0,0.0,0.0),
                                         facecolor="none")
 
-# coastline = cfeature.NaturalEarthFeature('physical', 'coastline', '50m',
-#                            edgecolor=(0.0,0.0,0.0),
-#                            facecolor="none")
-
-# rivers = cfeature.NaturalEarthFeature('physical', 'rivers_lake_centerlines', '50m',
-#                                         edgecolor='Blue', facecolor="none")
-
-# lakes = cfeature.NaturalEarthFeature('physical', 'lakes', '50m',
-#                                         edgecolor="blue", facecolor="blue")
-
-# ocean = cfeature.NaturalEarthFeature('physical', 'ocean', '50m',
-#                            edgecolor="green",
-#                            facecolor="blue")
 
     """fixed typo 'physical' and added resolution of 50m to c.feature.NaturalEarthFeature set """
 
@@ -100,9 +87,9 @@ def my_water_features(resolution, lakes=True, rivers=True, ocean=False):
     
     return features
 
-    # append adds to the end of the list, defined the features in water_features
-    #ocean=False to remove the oceans from being read/displayed in the maps
-    #added cfeature.NaturalEarthFeature specifications to each water body feature
+    """ append adds to the end of the list, defined the features in water_features
+    ocean=False to remove the oceans from being read/displayed in the maps
+    added cfeature.NaturalEarthFeature specifications to each water body feature """
 
 def my_basemaps():
     """Returns a dictionary of map tile generators that cartopy can use"""
@@ -151,7 +138,9 @@ def download_point_data(region):
 
     extent = region
 
-    #region is defined in MapMaker as the map_extent? The code for cat=... did not work with map_extent, however, is working with region. Maybe check if the postions in region (i.e. region[x]) allign with the map_extent long and lats.
+    """region is defined in MapMaker as the map_extent? The code for cat=... did not work with map_extent,    
+    however, is working with region. Maybe check if the postions in region (i.e. region[x]) allign with the 
+    map_extent long and lats. """
 
     starttime = UTCDateTime("1975-01-01")
     endtime   = UTCDateTime("2022-01-01")
@@ -163,16 +152,13 @@ def download_point_data(region):
                         maxlatitude=region[3],
                         minmagnitude=5.5, catalog="ISC")
     
-    #Defined the starttime and endtime as marked above, defined max and min longitude and latitude as the map_extent (defined by region), and made the catalog "ISC". Not sure what the minmagnitude is meant to be so I have left it at 5.5 for now.    
-    
-    
-    # cat = client.get_events(starttime=starttime, endtime=endtime, minlatitude=map_extent[2], maxlatitude=map_extent[3], minlongitude=map_extent[0], maxlongitude=map_extent[1], latitude=None, longitude=None, minradius=None, maxradius=None, mindepth=None, maxdepth=None, minmagnitude=None, maxmagnitude=None, magnitudetype=None, eventtype=None, includeallorigins=None, includeallmagnitudes=None, includearrivals=None, eventid=None, limit=None, offset=None, orderby=None, catalog="ISC", contributor=None, updatedafter=None, filename=None, **kwargs)
+    """ Defined the starttime and endtime as marked above, defined max and min longitude and latitude as the 
+    map_extent (defined by region), and made the catalog "ISC". Not sure what the minmagnitude is meant to be so 
+    I have left it at 5.5 """    
 
-# above code - Made the other variables in the catalog objects/null values. **kwargs allows us to pass keyword arguements into the function - don't think I need to define the other variables though.
 
     print ("Point data: {} events in catalogue".format(cat.count()))
 
-   # print (cat.count(), " events in catalogue") - does not work (from Himalaya example)
 
     # Unpack the obspy data into a plottable array
 
@@ -187,7 +173,9 @@ def download_point_data(region):
         eq_origins[ev,3] = dict(event.magnitudes[0])['mag']
         eq_origins[ev,4] = (dict(event.origins[0])['time']).date.year
 
-# changed the event_count from 4 to 5, however if it is meant to be 4 I am not sure if something needs to be removed, or if it's accounting for the last event labelled as '4'. Also added in some_code for the event specifications for lat, long, depth, mag and time. 
+    """changed the event_count from 4 to 5, however if it is meant to be 4 I am not sure if something needs to 
+     be removed, or if it's accounting for the last event labelled as '4'. Also added in some_code for the event 
+     specifications for lat, long, depth, mag and time """
 
     return eq_origins
 
@@ -233,7 +221,7 @@ def download_raster_data():
     raster_data[...,1] = arrlats[...]
     raster_data[...,2] = ages[...]
 
-# added in specifications for age data (i.e. raster_data): ages, lats, lons, meshgrid
+    """ added in specifications for age data (i.e. raster_data): ages, lats, lons, meshgrid """
 
     return raster_data
 
