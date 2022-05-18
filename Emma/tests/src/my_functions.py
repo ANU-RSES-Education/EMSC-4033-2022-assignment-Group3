@@ -60,23 +60,22 @@ def my_coastlines(resolution):
 
 
 def my_water_features(resolution, lakes=True, rivers=True, ocean=False):
-    """Returns a [list] of cartopy features - the ones you ask for"""
+    """Returns a [list] of cartopy features"""
     
     features = []
     
     if rivers:
-        features.append(cfeature.NaturalEarthFeature('physical', 'rivers_lake_centerlines', resolution,
+        features.append(cfeature.NaturalEarthFeature('physical', 'rivers_lake_centerlines', '10m',
                                         edgecolor='Blue', facecolor="none"))
         
     if lakes:
-        features.append(cfeature.NaturalEarthFeature('physical', 'lakes', resolution,
+        features.append(cfeature.NaturalEarthFeature('physical', 'lakes', '10m',
                                         edgecolor="blue", facecolor="blue"))
 
     if ocean:
-        features.append(cfeature.NaturalEarthFeature('physical', 'ocean', resolutio,
+        features.append(cfeature.NaturalEarthFeature('physical', 'ocean', '10m',
                            edgecolor="green",
                            facecolor="blue"))
-    
     
     return features
 
