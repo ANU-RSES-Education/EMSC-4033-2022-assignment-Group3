@@ -1,47 +1,105 @@
-"""All the functions we need to make a map:
+"""
+
+##Introduction to my_functions.py
+
+Welcome to my_functions.py! This module contains the functions that are needed to run MapMaker.ipyn - a notebook for easily creating maps from structured tabular data. This notebook makes use of the Python cartopy package, which is designed for easy data analysis and visualisation.
+
+To make things easier, each function in this module has been written in the following format: 
+
+def + The function name goes here ():
+    " This is a docstring"
+    The code goes here # This is a comment
+
+The comment here will help us understand and edit the code, while docstrings will be helpful in explaining what the function does.
+
+Additionally, docstrings are formatted in the following way: 
+
+Description of the function 
+
+Parameters
+----------
+     The variables listed inside the parentheses in the function definition
+
+Returns
+-------
+    This is a description of what is returned.
+
+
+Finally, here is all the functions we need to make a map:
 
     - my_documentation()
     - my_coastlines()
     - my_water_features()
     - my_basemaps()
-
+    - my_point_data()
+    - my_global_raster_data()
+    
 """
 
 from .dependencies import *
 
 def my_documentation():
+    """This function returns a text that describes the purpose of this notebook, and instructions on how to use it
+    Parameters
+----------
+     none
+
+Returns
+-------
+    markdown_documentation (string):  """   
+
 
     markdown_documentation = """   
 
-hello
-"""
-    
+##Introduction to MapMaker.ipyn
+
+Welcome to MapMaker.ipyn - a seismic event map generator! Currently, this notebook can be run to display the locations of earthquakes that occured from 1975-2022 in the California region, but can be easily modified: you can define the temporal and spatial scales of interest, as well as the geographical projection and the resolution of geographic features displayed on the map. Instructions on how to modify this map are contained within my_functions.py
+"""    
     return markdown_documentation
 
 
 
 def my_coastlines(resolution):
-    """ returns the relevant coastlines at the requested resolution """
+    """ This function returns the relevant coastlines at the requested resolution. 
+
+    Parameters
+    ----------
+    resolution (string) : the scale of the coastlines displayed on the map, which should be one of '10m', '50m', or '110m'.
+    The resolution can be defined in MapMaker.ipyn, i.e. when calling my_coastlines("10m")
+
+    Returns
+    -------
+    The cartopy feature for coastlines at the requested resolution 
+    """
 
     import cartopy.feature as cfeature
 
     return cfeature.NaturalEarthFeature('physical', 'coastline', resolution,
                                         edgecolor=(0.0,0.0,0.0),
-                                        facecolor="none")
-
-
-# fixed typo (physical) and changed res to resolution
-# do a test for valid resolution 
+                                        facecolor="none") 
 
 
 def my_water_features(resolution, lakes=True, rivers=True, ocean=True):
-    """Returns a [list] of cartopy features"""
+    """This function returns a [list] of cartopy features(lakes, rivers and oceans) at the requested resolution
     
-    features = []
+    Parameters
+    ----------
+    - Paremeter (1) - resolution (string) : the scale of the features displayed on the map, which should be one of '10m', '50m', or '110m'.
+    The resolution can be defined in MapMaker.ipyn, i.e. when calling my_water_features("50m")
+    - Paremeters (2) (3) (4) - relevant features, which must be called by name=True
+
+    Returns
+    -------
+    features (list) : A list of the cartopy features for lakes, rivers and oceans.
+    """
+    
+    features = [] # creates an empty list. 
     
     if rivers:
         features.append(cfeature.NaturalEarthFeature('physical', 'rivers_lake_centerlines', '10m',
                                         edgecolor='Blue', facecolor="none"))
+        
+        # .append adds each feature to the "features" list defined above that can be called if True.
         
     if lakes:
         features.append(cfeature.NaturalEarthFeature('physical', 'lakes', '10m',
@@ -55,83 +113,45 @@ def my_water_features(resolution, lakes=True, rivers=True, ocean=True):
     return features
 
 
-# append means add to the end of the list, so added .append to features. Also changed ocean=False to ocean=True
-
-#added import cartopy.io.img_tiles as cimgt
-# copied code from notebooks - mapping 7 
-
-# import cartopy.io.img_tiles as cimgt
-# import cartopy.crs as ccrs
-# from cartopy.io.img_tiles import GoogleWTS
-
-
-# class MapboxTiles(GoogleWTS):
-#     """
-#     Implement web tile retrieval from Mapbox.
-#     For terms of service, see https://www.mapbox.com/tos/.
-#     """
-#     def __init__(self, access_token, map_id):
-#         """
-#         Set up a new Mapbox tiles instance.
-#         Access to Mapbox web services requires an access token and a map ID.
-#         See https://www.mapbox.com/api-documentation/ for details.
-#         Parameters
-#         ----------
-#         access_token
-#             A valid Mapbox API access token.
-#         map_id
-#             An ID for a publicly accessible map (provided by Mapbox).
-#             This is the map whose tiles will be retrieved through this process.
-#         """
-#         self.access_token = access_token
-#         self.map_id = map_id
-#         super().__init__()
-        
-
-#     def _image_url(self, tile):
-#         x, y, z = tile
-#         url = ('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}'
-#                '?access_token={token}'.format(z=z, y=y, x=x,
-#                                               id=self.map_id,
-#                                               token=self.access_token))
-#         return url
-
-# mapbox_outdoors = MapboxTiles(map_id='mapbox/outdoors-v11', 
-#                                      access_token='pk.eyJ1IjoibG91aXNtb3Jlc2kiLCJhIjoiY2pzeG1mZzFqMG5sZDQ0czF5YzY1NmZ4cSJ9.lpsUzmLasydBlS0IOqe5JA')
-
-# basemap_name = mapbox_outdoors
 
 def my_basemaps():
-#     """Returns a dictionary of map tile generators that cartopy can use"""
+    """Returns a dictionary of map tile generators that cartopy can use.
+    The full list of available interfaces is found in the source code for this one:
+    https://github.com/SciTools/cartopy/blob/master/lib/cartopy/io/img_tiles.py
     
-    ## The full list of available interfaces is found in the source code for this one:
-    ## https://github.com/SciTools/cartopy/blob/master/lib/cartopy/io/img_tiles.py
+    Parameters
+    ----------
+     none
 
-    # dictionary of possible basemap tile objects
+    Returns
+    -------
+    mapper (dict): dictionary of possible basemap tile objects - projection for the map.
+    Only one in this instance: "open_street_map"
     
+    """
     
-    mapper = {}
-    
-    ## Open Street map
-    mapper["open_street_map"] = cimgt.OSM()
-    # mapper["mapbox_outdoors"] = cimgt.MapboxTiles(map_id='outdoors-v11', access_token='pk.eyJ1IjoibG91aXNtb3Jlc2kiLCJhIjoiY2pzeG1mZzFqMG5sZDQ0czF5YzY1NmZ4cSJ9.lpsUzmLasydBlS0IOqe5JA')
+    mapper = {} # empty dictionary of possible basemap tile objects
+
+    mapper["open_street_map"] = cimgt.OSM() ## Adding Open Street map to the dictionary above
 
     return mapper
-
-
-
-
-# mapbox_outdoors = MapboxTiles(map_id='mapbox/outdoors-v11', 
-#                                      access_token='pk.eyJ1IjoibG91aXNtb3Jlc2kiLCJhIjoiY2pzeG1mZzFqMG5sZDQ0czF5YzY1NmZ4cSJ9.lpsUzmLasydBlS0IOqe5JA')
-
-
 
 
 
 # # specify some point data (e.g. global seismicity in this case)
 
 def download_point_data(region):
-    #looked up ?get_events and got the list i need to add, added that to the doc, found the 
+    """downloads and creates an array for the point data - these are the seismic events.
+    
+    Parameters
+    ----------
+     region (list): a list that contains the co-ordinates for the extent of the map. This can be defined in MapMaker.ipyn, i.e. when calling map_extent = [lon0, lon1, lat0, lat1].
+
+    Returns
+    -------
+    eq_origins (numpy array) : contains the latitude, longitude, depth and magnitude of the earthquakes
+    
+    """
     
     from obspy.core import event
     from obspy.clients.fdsn import Client
@@ -141,78 +161,103 @@ def download_point_data(region):
     
     extent = region
 
-    starttime = UTCDateTime("1975-01-01")
-    endtime   = UTCDateTime("2022-01-01")
+    # Define the temporal scale which should be altered here
     
-    # cat = client.get_events(starttime=None,endtime=None,minlatitude=None,maxlatitude=None,minlongitude=None,maxlongitude=None,latitude=None,longitude=None,minradius=None,maxradius=None,mindepth=None,maxdepth=None,minmagnitude=None,maxmagnitude=None,magnitudetype=None,eventtype=None,includeallorigins=None,includeallmagnitudes=None,includearrivals=None,eventid=None,limit=None,offset=None,orderby=None,catalog=None,contributor=None,updatedafter=None,filename=None,**kwargs,)
+    starttime = UTCDateTime("1975-01-01") 
+    endtime   = UTCDateTime("2022-01-01") 
     
+    # Download data relevant to the spatial scale which can be altered in MapMaker.ipyn
+
     cat = client.get_events(starttime=starttime, 
                             endtime=endtime,
                             minlongitude=extent[0],
                             maxlongitude=extent[1],
                             minlatitude=extent[2],
                             maxlatitude=extent[3],
-                            minmagnitude=5, catalog="ISC")
+                            minmagnitude=5, catalog="ISC") #You can change the minimum magnitude of the seismic events here! i.e. minmagnitude=4
+    
+    #Two ways of counting seimsic events
 
-    print (cat.count(), " events in catalogue")
+    print (cat.count(), " events in catalogue") 
 
-# lat0 =  30  ; lat1 = 40
-# lon0 =  -123; lon1 = -113
-# left min magnitude as 5.5
-
-
-    print ("Point data: {} events in catalogue".format(cat.count()))
+    print ("Point data: {} events in catalogue".format(cat.count())) 
     
     # Unpack the obspy data into a plottable array
 
     event_count = cat.count()
 
+    # Setting up the array 
+    
     eq_origins = np.zeros((event_count, 4))
     
- # I have copied the code from himalaya 
+    # Store information for longitude, latitude, depth and magnitude from point_data
 
     for ev, event in enumerate(cat.events):
         eq_origins[ev,0] = dict(event.origins[0])['longitude']
         eq_origins[ev,1] = dict(event.origins[0])['latitude']
         eq_origins[ev,2] = dict(event.origins[0])['depth']
         eq_origins[ev,3] = dict(event.magnitudes[0])['mag']
-        #eq_origins[ev,4] = (dict(event.origins[0])['time']).date.year
 
     return eq_origins
 
 
+
 def my_point_data(region):
+    """Renames the data downloaded in download_point_data
+    
+    Parameters
+    ----------
+     region (list): a list that contains the co-ordinates for the extent of the map. This can be defined in MapMaker.ipyn, i.e. when calling map_extent = [lon0, lon1, lat0, lat1].
+
+    Returns
+    -------
+    data (numpy array) : contains the latitude, longitude, depth and magnitude of the earthquake
+    
+    """
     
     data = download_point_data(region)
     
     return data
 
 
-# # - Some global raster data (lon, lat, data) global plate age, in this example
+
+# - Some global raster data (lon, lat, data) global plate age, in this example
 
 def download_raster_data():
     
-    # Seafloor age data and global image - data from Earthbyters
+    """downloads and creates an array for the raster data - these are Seafloor age data and global image (data from Earthbyters). The data is then reformatted to fit to a latitude and longitude grid. 
+    
+    Parameters
+    ----------
+     none
 
+    Returns
+    -------
+    raster_data (numpy array) : contains the latitude, longitude and age of the sea floor. 
+    """
+   
     # The data come as ascii lon / lat / age tuples with NaN for no data. 
     # This can be loaded with ...
-
     # age = numpy.loadtxt("Resources/global_age_data.3.6.xyz")
     # age_data = age.reshape(1801,3601,3)  # I looked at the data and figured out what numbers to use
     # age_img  = age_data[:,:,2]
 
     # But this is super slow, so I have just stored the Age data on the grid (1801 x 3601) which we can reconstruct easily
 
+    # Import data 
     from cloudstor import cloudstor
     teaching_data = cloudstor(url="L93TxcmtLQzcfbk", password='')
     teaching_data.download_file_if_distinct("global_age_data.3.6.z.npz", "Resources/global_age_data.3.6.z.npz")
 
+   # Create array
+
     datasize = (1801, 3601, 3)
     raster_data = np.empty(datasize)
     
+    #Fit to a latitude and longitude grid. 
     
     ages = np.load("Resources/global_age_data.3.6.z.npz")["ageData"]
-
+    
     lats = np.linspace(90, -90, datasize[0])
     lons = np.linspace(-180.0,180.0, datasize[1])
 
@@ -226,13 +271,21 @@ def download_raster_data():
 
 
 def my_global_raster_data():
+    
+    """Renames the data downloaded in download_raster_data
+    
+    Parameters
+    ----------
+     none
+
+    Returns
+    -------
+    raster (numpy array) : contains the latitude, longitude and age of the sea floor. 
+    
+    """
 
     raster = download_raster_data()
     
     return raster
-
-
-
-
 
 
