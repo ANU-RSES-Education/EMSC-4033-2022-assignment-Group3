@@ -1,5 +1,5 @@
-# EMSC-4033-2022-assignment
-Assignment for EMSC-4033/8033, semester 1, 2022
+# EMSC-4033-2022-assignment - Group 3
+Assignment for EMSC-4033/8033, Semester 1, 2022 
 
  **Group Members:**    
  
@@ -9,11 +9,24 @@ Assignment for EMSC-4033/8033, semester 1, 2022
   Lachlan
   
   ---
-  
-  This Git repository has four folders which each contain code to make a map and code to test functions within that folder. 
-  
-As an example, each folder contains a seismic event mapper for the California region that displays the locations of earthquakes that occured from 1975-2022. In each mapper, users are able to specify co-ordinates, the physical features displayed (e.g. lakes, oceans, rivers) and the minimum magnitude of the earthquakes displayed. Each map displays the earthquakes in a colour-graded system that shows depth, as well a sea-floor layer that displays age.
-  
-To make one of the maps, open one of the folders and run "MapMaker.ipnyb". Tests for each of the functions are enclosed in the "test_functions.py" of each folder. These tests can be run using the "RunTests.ipynb" file. Sourcecode is available in each folder under /src.
+    
+
+**Welcome to our Git repository!** 
+
+The purpose of this Git repository is to provide notebook tutorials to easily create maps from structured data using functions, as well as to write code to test these functions. 
+
+To make one of the maps, start on the main page and open one of the user folders (e.g. Lucas). Within this folder, you will find some important files:  
+
+- **MapMaker.ipnyb**: Running this module will generate a seismic event map for the California region.
+
+- **src folder**: This folder contains the source code for MapMaker.ipnyb. The functions that are called in **MapMaker.ipnyb** are contained within **my_functions.py**; the dependencies that are needed to be imported for **MapMaker.ipnyb** to run are contained within **dependencies.py** and the functions that are to be tested are contained within **functions.py**.
+
+- **tests folder**: This folder contains tests for each of the functions within **"test_functions.py"**. 
+
+- **RunTests.ipynb**: This module runs the tests contained within **"test_functions.py"**. 
+
+In each mapper, you are able to specify the temporal and spatial scales of interest, the type and resolution of physical features displayed (e.g. lakes, oceans, rivers), the minimum magnitude of the seismic events displayed and the geographic projection of the map. Instructions on how to modify this map are contained within the documentation for **my_functions.py**. Each map displays the earthquakes in a colour-graded system that shows depth, as well a sea-floor layer that displays age.
+
+Have fun!
 
 
