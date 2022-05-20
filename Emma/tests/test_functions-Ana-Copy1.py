@@ -4,11 +4,12 @@ from src.my_functions import *
 
 # **Tests for my_documentation**
 
-def test_my_documentation_keyword():
-    """Test whether documentation is the correct one by searching for a keyword"""
-    documentation = my_documentation()
-    assert "map" in documentation, "Failed to return the correct documentation"
-
+# +
+# def test_my_documentation_keyword():
+#     """Test whether documentation is the correct one by searching for a keyword"""
+#     documentation = my_documentation()
+#     assert "map" in documentation, "Failed to return the correct documentation"
+# -
 
 def test_my_documentation_is_string():
     """Tests whether the function we are calling is a string"""
@@ -29,7 +30,7 @@ def test_my_coastlines():
 def test_my_water_features():
     """checks the length of "my_water_features" function to check if all three features are present"""
     features_length = len(my_water_features("10m"))
-    assert features_length == 3, "Not all features are displayed"
+    assert features_length == 2, "Not all features are displayed"
 
 
 def test_my_water_features_is_list():
@@ -43,7 +44,7 @@ def test_my_water_features_type():
     features = my_water_features("10m")
     assert type(features[0]) == cfeature.NaturalEarthFeature, "The cartopy feature 'rivers' is not contained"
     assert type(features[1]) == cfeature.NaturalEarthFeature, "The cartopy feature 'lakes' is not contained"
-    assert type(features[2]) == cfeature.NaturalEarthFeature, "The cartopy feature 'oceans' is not contained"
+    # assert type(features[2]) == cfeature.NaturalEarthFeature, "The cartopy feature 'oceans' is not contained"
 
 
 # **Tests for my_basemaps**
@@ -63,7 +64,7 @@ def test_my_basemaps_is_dictionary():
 def test_my_basemaps_length():
     """checks the length of "my_basemaps" function to check if all maps are contained"""
     mapper_length = len(my_basemaps()) 
-    assert mapper_length == 1, "not all basemap types are contained within dictionary"
+    assert mapper_length == 7, "not all basemap types are contained within dictionary"
 
 
 # **Tests for my_point_data**
