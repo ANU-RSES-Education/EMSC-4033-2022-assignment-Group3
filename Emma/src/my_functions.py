@@ -20,7 +20,7 @@ The parameters of map can be specified in this document and the Map Maker module
 - The map tiles can be tailored to events such as depth, magnitude and time.
 - the latitude and longitude for the region can be specified in the MapMaker module to give the extent of the map.
 - the water features can be specified to display or removed rivers, lakes and oceans.
-- Seafloor age data can be imported for the raster_data.
+- Seafloor age data can be imported for the raster_data
 
 """
     
