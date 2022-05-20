@@ -23,6 +23,12 @@
 
 18/5/22
 - approved pull requests and made pull request reviews.
+- worked on the report.md
+
+20/5/22
+- raised an issue about my test_functions
+- tested everyone's functions and wrote comments for them.
+- finalised the report.md
 
 ---
 
@@ -82,7 +88,14 @@
 
  18/5/22
  - finalised map_maker, made the code neat and added doc strings.
+
+19/5/22
  - finished test_functions tests for the my_functions functions.
+ - pushed my finished work into Github
+
+20/5/22
+- fixed up my_functions based on the issues raised by group members.
+- tested everyone's code with my pytest tests. Had to change some of hte tests to tailor them to everyone's functions. Commented on the failed tests by raising issues with the users. 
  
  **Lucas**
  18/5/22  
