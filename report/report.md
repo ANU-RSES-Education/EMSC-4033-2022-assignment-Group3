@@ -108,6 +108,7 @@
 
 20/5/22
 -Completed my_test.py
+-Tested emmas functions
 - Ran test on emmas functions
 
 ---
@@ -128,6 +129,7 @@
 - tested everyone's code with my pytest tests. Had to change some of hte tests to tailor them to everyone's functions. Commented on the failed tests by raising issues with the users. 
  
  Lachlan 20/5/22
+ - All except foo_functions passed test
  -Ran test on emmas work. 1 failure. Was default example test "foo_function"
  - All other tests passed
  
