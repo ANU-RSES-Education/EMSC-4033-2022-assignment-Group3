@@ -13,9 +13,11 @@ Assignment for EMSC-4033/8033, Semester 1, 2022
 
 **Welcome to our Git repository!** 
 
-The purpose of this Git repository is to provide notebook tutorials to easily create maps from structured data using functions, as well as to write code to test these functions. 
+The purpose of this Git repository is to provide notebook tutorials to easily create maps from structured data using functions, as well as to write code to test these functions. By following one of these tutorials, you will learn (1) how to use the popular map-making Python package cartopy and (2) how to write and modify simple functions and tests for functions. 
 
-To make one of the maps, start on the main page and open one of the user folders (e.g. Lucas). Within this folder, you will find some important files:  
+To get started, you will first need to copy, or "fork" the repository, which will allow you to freely experiment and modify the notebooks without affecting the original code.
+
+Next, to make one of the maps, start on the main page and open one of the user folders (e.g. Lucas). Within this folder, you will find some important files:  
 
 - **MapMaker.ipnyb**: Running this module will generate a seismic event map for the California region.
 
