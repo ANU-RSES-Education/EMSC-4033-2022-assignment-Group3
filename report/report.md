@@ -39,21 +39,34 @@
 9/05/2022
 - I pulled Lucas's files to anastasia_branch to test his functions.
 - I pushed my my_functions to the main branch.
+- updated report.md
+
+10/05/2022
+- pushed what i have so far in my_functions to the main branch.
 
 11/05/2022
 - finished writing my my_functions code and tested if my map_maker works
-
-16/05/2022
+- updated the main branch to include this 
 
 17/05/2022
 - I approved Lachlan's pull requests, allwoing him to upload his code onto the main branch.
 
 18/05/2022
 - I approved Lucas's pull requests, allowoing him to upload his code onto the main branch.
-- Collaborated to edit the main report.
-- I added documentation to my my_functions (I will do this today)
-- Added some tests 
+- finished writing my tests 
 
+19/05/2022
+
+- Collaborated to edit the main report.
+- merged pull requests #29, #31, #35, #36, #38
+- I added documentation, docstrings and comments to my my_functions 
+- added dosctrings to my tests 
+- tested everyone's code 
+
+20/05/2022 
+- merged pull requests #39, #46, #49, #55, #54, #64
+- raised issues about problems with codes
+- pushed my code into github 
 ---
 
 **Lucas**  
@@ -119,6 +132,10 @@
  18/5/22  
  -I ran tests offline on this code, all 6 tests were passed  
  
+  **Ana**
+ 20/05/22
+ - ran tests and it worked!
+ 
  # Ana's Work
  
   **Lucas**
@@ -137,7 +154,9 @@
 - Made a pull request to upload my tests
 - Ran tests on other people's code offline, all tests were passed in all cases
 
- 
+  **Ana**
+ 20/05/22
+ - ran tests and it worked!
  
  # Lachlan's Work
  
