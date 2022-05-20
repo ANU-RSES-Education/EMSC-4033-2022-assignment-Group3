@@ -112,7 +112,7 @@
  - pushed my finished work into Github
 
 20/5/22
-- fixed up my_functions based on the issues raised by group members.
+- fixed up my_functions based on the issues raised by group members. I added the documentation to Map_Maker, which got a few comments from my group members for improvements so I fixed it up for submission.
 - tested everyone's code with my pytest tests. Had to change some of hte tests to tailor them to everyone's functions. Commented on the failed tests by raising issues with the users. 
  
  **Lucas**
