@@ -42,17 +42,29 @@
 
 
 18/05/2022
-- I approved Lucas's pull requests, allwoing him to upload his code onto the main branch.
+- I approved Lucas's pull requests, allowoing him to upload his code onto the main branch.
 - Collaborated to edit the main report.
 - I added documentation to my my_functions (I will do this today)
 - Added some tests 
 - 
 
 **Lucas**  
-2/5/22
+2/5/22  
 - Opened an issue asking how we want to document our work in this file (issue #9).  
+
 16/5/22  
+- Wrote a bunch of mediocre code
 - Finished and uploaded my code
+
+
+18/5/22
+- Added some test files to other peoples folders and ran them to test others' code
+- Approved Emma's pull request to upload her code
+- Made some improvements to README.md 
+
+19/5/22  
+- Approved Ana's excellent changes to README.md
+- Worked on repord.mc
 
 **Lachlan**  
 
