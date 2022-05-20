@@ -94,7 +94,8 @@
 -run my_test.py on other members code
 
 20/5/22
--Comple
+-Completed my_test.py
+-Attempted to run my tests in other peoples directory but wouldn't work? Appeared in github, but not on jupiter?
 
 ---
 
