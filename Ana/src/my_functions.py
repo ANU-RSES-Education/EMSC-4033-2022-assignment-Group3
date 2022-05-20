@@ -4,8 +4,6 @@
 
 Welcome to my_functions.py! This module contains the functions that are needed to run MapMaker.ipyn - a notebook for easily creating maps from structured tabular data. This notebook makes use of the Python cartopy package, which is designed for easy data analysis and visualisation.
 
-To make things easier, each function in this module has been written in the following format: 
-
 def + The function name goes here ():
     " This is a docstring"
     The code goes here # This is a comment
@@ -53,7 +51,7 @@ Returns
 
 ##Introduction to MapMaker.ipyn
 
-Welcome to MapMaker.ipyn - a seismic event map generator! Currently, this notebook can be run to display the locations of earthquakes that occured from 1975-2022 in the California region, but can be easily modified: you can define the temporal and spatial scales of interest, as well as the geographical projection and the resolution of geographic features displayed on the map. Instructions on how to modify this map are contained within my_functions.py
+Welcome to MapMaker.ipyn - a seismic event map generator! Currently, this notebook can be run to display the locations of earthquakes that occured from 1975-2022 in the California region, but can be easily modified: you can define the temporal and spatial scales of interest, as well as the geographical projection and the resolution of geographic features displayed on the map, in addition to the magnitude of seismic events. Instructions on how to modify this map are contained within my_functions.py.
 """    
     return markdown_documentation
 
