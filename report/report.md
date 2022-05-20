@@ -73,6 +73,22 @@
 ---
 
 **Lachlan**  
+10/5/22
+-Began to debug my_functions.py file
+- Added work to github through pull request
+
+17/5/22
+-Completed debugging my_functions.py
+-Produced complete map
+-Begun working on my_tests.py
+
+19/5/22
+-Made edit to readme.md file
+-imported my_test.py to other folders
+-run my_test.py on other members code
+
+20/5/22
+-Comple
 
 ---
 
