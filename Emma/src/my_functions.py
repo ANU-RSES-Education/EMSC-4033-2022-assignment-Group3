@@ -12,8 +12,16 @@ from .dependencies import *
 def my_documentation():
 
     markdown_documentation = """   
-This purpose of this Notebook is to provide the commands and functions needed for Map Maker to run and produce 
+This purpose of this Notebook is to provide the commands and functions needed for the Map Maker module to run and produce 
 a base-map for the LA Basin with super-imposed data based on sea-floor age and seismic data in the region. Topography has been specified by point data; to indicate regions as lakes, rivers, and oceans.
+
+The parameters of map can be specified in this document and the Map Maker module. Note that the Map Maker module runs alongside this Noteboook to produce the Map that can then be exported.
+- Resolution can be specified as 10m, 50m, or 110m
+- The map tiles can be tailored to events such as depth, magnitude and time.
+- the latitude and longitude for the region can be specified in the MapMaker module to give the extent of the map.
+- the water features can be specified to display or removed rivers, lakes and oceans.
+- Seafloor age data can be imported for the raster_data
+
 """
     
     return markdown_documentation
