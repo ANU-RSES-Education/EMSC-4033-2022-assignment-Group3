@@ -58,7 +58,7 @@ def my_coastlines(resolution):
 
     import cartopy.feature as cfeature
 
-    return cfeature.NaturalEarthFeature('physcical', 'coastline', resolution,
+    return cfeature.NaturalEarthFeature('physical', 'coastline', resolution,
                                         edgecolor=(0.0,0.0,0.0),
                                         facecolor="none")
 
@@ -94,7 +94,7 @@ def my_basemaps():
     mapper = {}
     
     ## Open Street map
-    mapper["basemap_name"] = cimgt.OSM()
+    mapper["open_street_map"] = cimgt.OSM()
 
     return mapper
 
@@ -102,7 +102,7 @@ def my_basemaps():
 ## specify some point data (e.g. global seismicity in this case)
 
 def download_point_data(region):
-    
+    """Downloads Earthquake data for th given region"""
     from obspy.core import event
     from obspy.clients.fdsn import Client
     from obspy import UTCDateTime
@@ -141,7 +141,7 @@ def download_point_data(region):
 
 
 def my_point_data(region):
-    
+    """Specifies the data to download from the region of interest"""
     data = download_point_data(region)
     
     return data
@@ -150,7 +150,7 @@ def my_point_data(region):
 ## - Some global raster data (lon, lat, data) global plate age, in this example
 
 def download_raster_data():
-    
+    """Downloads rater seafloor ages from the cloudstore"""
     # Seafloor age data and global image - data from Earthbyters
 
     # The data come as ascii lon / lat / age tuples with NaN for no data. 
@@ -182,7 +182,7 @@ def download_raster_data():
 
 
 def my_global_raster_data():
-
+    """Specifies the raster data of interest"""
     raster = download_raster_data()
     
     return raster
