@@ -62,9 +62,11 @@
 - Approved Emma's pull request to upload her code
 - Made some improvements to README.md 
 
-19/5/22  
+20/5/22  
+- Cheeky last minute changes before the assignment is due
 - Approved Ana's excellent changes to README.md
-- Worked on repord.mc
+- Worked on repord.md
+- Scanned through other peoples code - raised an issue for Lachlan about his docstrings
 
 **Lachlan**  
 
