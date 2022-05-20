@@ -109,6 +109,7 @@
 20/5/22
 -Completed my_test.py
 -Tested emmas functions
+- Ran test on emmas functions
 
 ---
 
@@ -129,6 +130,8 @@
  
  Lachlan 20/5/22
  - All except foo_functions passed test
+ -Ran test on emmas work. 1 failure. Was default example test "foo_function"
+ - All other tests passed
  
  **Lucas**
  18/5/22  
