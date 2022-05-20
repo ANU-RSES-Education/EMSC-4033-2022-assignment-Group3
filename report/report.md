@@ -96,6 +96,7 @@
 20/5/22
 -Completed my_test.py
 -Attempted to run my tests in other peoples directory but wouldn't work? Appeared in github, but not on jupiter?
+-Github won't let us resolve a pull request and merge branches?
 
 ---
 
