@@ -63,7 +63,7 @@ def test_my_earth_features_type():
 def test_my_basemaps_type():
     """checks if my_basemaps() returns a cartopy image"""
     
-    assert type(my_basemaps().popitem()[1]) in [cartopy.io.img_tiles.OSM, cartopy.io.img_tiles.Google], "An element in my_basemaps dictionary is not a cartopy image" 
+    assert type(my_basemaps().popitem()[1]) in [cartopy.io.img_tiles.OSM, cartopy.io.img_tiles.GoogleTiles], "An element in my_basemaps dictionary is not a cartopy image" 
     
 def test_my_point_data_lats_longs():
     """Tests if the first two columns of the output of my_point_data contain acceptible latitude and longitude values."""
