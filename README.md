@@ -29,6 +29,6 @@ Next, to make one of the maps, start on the main page and open one of the user f
 
 In each mapper, you are able to specify the temporal and spatial scales of interest, the type and resolution of physical features displayed (e.g. lakes, oceans, rivers), the minimum magnitude of the seismic events displayed and the geographic projection of the map. Instructions on how to modify this map are contained within the documentation for **my_functions.py**. Each map displays the earthquakes in a colour-graded system that shows depth, as well a sea-floor layer that displays age.
 
-Have fun!
+Have fun! :)
 
 
