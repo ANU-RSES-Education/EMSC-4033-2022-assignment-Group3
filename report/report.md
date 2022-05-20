@@ -24,6 +24,8 @@
 18/5/22
 - approved pull requests and made pull request reviews.
 
+---
+
 **Ana**  
 2/5/22
 - closed previously raised issue #1 and added comments on issue #9.
@@ -40,13 +42,13 @@
 17/05/2022
 - I approved Lachlan's pull requests, allwoing him to upload his code onto the main branch.
 
-
 18/05/2022
 - I approved Lucas's pull requests, allowoing him to upload his code onto the main branch.
 - Collaborated to edit the main report.
 - I added documentation to my my_functions (I will do this today)
 - Added some tests 
-- 
+
+---
 
 **Lucas**  
 2/5/22  
@@ -68,7 +70,11 @@
 - Worked on repord.md
 - Scanned through other peoples code - raised an issue for Lachlan about his docstrings
 
+---
+
 **Lachlan**  
+
+---
 
  # Emma's Work
  16/5/22
