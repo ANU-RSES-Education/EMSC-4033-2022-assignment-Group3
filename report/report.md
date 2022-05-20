@@ -95,8 +95,7 @@
 
 20/5/22
 -Completed my_test.py
--Attempted to run my tests in other peoples directory but wouldn't work? Appeared in github, but not on jupiter?
--Github won't let us resolve a pull request and merge branches?
+- Ran test on emmas functions
 
 ---
 
@@ -114,6 +113,10 @@
 20/5/22
 - fixed up my_functions based on the issues raised by group members. I added the documentation to Map_Maker, which got a few comments from my group members for improvements so I fixed it up for submission.
 - tested everyone's code with my pytest tests. Had to change some of hte tests to tailor them to everyone's functions. Commented on the failed tests by raising issues with the users. 
+ 
+ Lachlan 20/5/22
+ -Ran test on emmas work. 1 failure. Was default example test "foo_function"
+ - All other tests passed
  
  **Lucas**
  18/5/22  
